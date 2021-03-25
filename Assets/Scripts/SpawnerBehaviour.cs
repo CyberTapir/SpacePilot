@@ -24,10 +24,18 @@ public class SpawnerBehaviour : MonoBehaviour
         //Creating an obstacle at a random x position
         obstacle.transform.position = new Vector2(Random.Range(-9f, 9f), transform.position.y);
 
-        //Setting a random speed for the obstacle
+        //setting the obstacle speed depending on the level
         ObstacleBehaviour obScript = obstacle.GetComponent<ObstacleBehaviour>();
-        obScript.speed = Random.Range(2.8f, 22f);
 
+        //Depending on the level, set a speed for the obstacle
+        if (PlayerBehaviour.score > 0)
+        {
+            obScript.speed = Random.Range(2.8f, 13f);
+        } else if (PlayerBehaviour.score > 20)
+        {
+            obScript.speed = Random.Range(3f, 16f);
+        }
+        
         //Setting a random size for the obstacle
         float size = Random.Range(0.1f, 0.4f);
         obstacle.transform.localScale = new Vector2(size, size);
